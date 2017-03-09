@@ -31,7 +31,7 @@
     "infranode-AvailSet": "infranodeAvailSet",
     "node-AvailSet": "nodeAvailSet",
 
-    "vhdStorageType": "Standard_LRS",
+    "vhdStorageType": "Premium_LRS",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
     "infranodeSubnetRef": "[concat(variables('vnetId'), '/subnets/', variables('infranodesubnetName'))]",
     "nodeSubnetRef": "[concat(variables('vnetId'), '/subnets/', variables('nodesubnetName'))]",
@@ -39,13 +39,13 @@
     "centos": {
       "publisher": "Openlogic",
       "offer": "CentOS",
-      "sku": "7.2",
+      "sku": "7.3",
       "version": "latest"
     },
     "rhel": {
       "publisher": "RedHat",
       "offer": "RHEL",
-      "sku": "7.2",
+      "sku": "7.3",
       "version": "latest"
     }
   },

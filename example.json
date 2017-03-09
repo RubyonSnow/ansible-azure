@@ -277,7 +277,7 @@
         "displayName": "Storage Account"
       },
       "properties": {
-        "accountType": "Standard_LRS"
+        "accountType": "Premium_LRS"
       }
     }
   ]

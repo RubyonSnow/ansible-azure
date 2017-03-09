@@ -69,7 +69,7 @@
     }    ,
         "storageType": {
             "type": "string",
-            "defaultValue": "Standard_LRS",
+            "defaultValue": "Premium_LRS",
             "allowedValues": [
               "Premium_LRS",
               "Standard_LRS"
@@ -95,7 +95,7 @@
     "centos": {
       "publisher": "Openlogic",
       "offer": "CentOS",
-      "sku": "7.2",
+      "sku": "7.3",
       "version": "latest"
     },
     "rhel": {
