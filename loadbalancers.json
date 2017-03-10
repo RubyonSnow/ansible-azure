@@ -37,13 +37,13 @@
     "centos": {
       "publisher": "Openlogic",
       "offer": "CentOS",
-      "sku": "7.2",
+      "sku": "7.3",
       "version": "latest"
     },
     "rhel": {
       "publisher": "RedHat",
       "offer": "RHEL",
-      "sku": "7.2",
+      "sku": "7.3",
       "version": "latest"
     }
   },

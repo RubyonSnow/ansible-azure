@@ -5,6 +5,7 @@
   gather_facts: no
   vars:
     mastercount: "{{ masters | length }}"
+    template_root: "https://raw.githubusercontent.com/marcusne/ansible-azure/master/"
   tasks:
     - debug: msg="Checking if master size is correct either 1,3 or 5. Current size={{ mastercount }} "
     - name: 'check parm is null or invalid'

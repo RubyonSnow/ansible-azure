@@ -1,5 +1,5 @@
 ##tags: "{% for key1, value1 in item.value.tags.iteritems() %}{{ key1 }}={{ value1 }}{% if not loop.last %}, {% endif %}{% endfor %}"
-- debug: msg=" Performiong tagging vms "
+- debug: msg=" Performing tagging vms "
 
 - name: Tagging AZURE VM
   with_dict: "{{ machines }}"
