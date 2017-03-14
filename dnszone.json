@@ -50,7 +50,7 @@
     },
     {
       "type": "Microsoft.Network/dnszones/CNAME",
-      "name": "*",
+      "name": "[concat(parameters('ocpSubdomain'), '/', '*']",
       "apiVersion": "2016-04-01",
       "dependsOn": [
         "[parameters('ocpSubdomain')]"
@@ -66,7 +66,7 @@
     },
     {
       "type": "Microsoft.Network/dnszones/NS",
-      "name": "@",
+      "name": "[concat(parameters('ocpSubdomain'), '/', '@']",
       "apiVersion": "2016-04-01",
       "dependsOn": [
         "[parameters('ocpSubdomain')]"
