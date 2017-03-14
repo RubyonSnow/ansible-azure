@@ -1,0 +1,99 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ocpSubdomain": {
+      "type": "string",
+      "defaultValue": "[concat(uniqueString(resourceGroup().id), '.cloudapps.org')]",
+      "metadata": {
+        "description": "The name of the OpenShift router subdomain zone to be created.  Must have at least 2 segements, e.g. cloudapps.org"
+      }
+    },
+    "ocpRouterName": {
+      "type": "string",
+      "defaultValue": "openshift",
+      "metadata": {
+        "description": "The name of the DNS record for OpenShift Router LB, name is relative to the zone, not the FQDN."
+      }
+    },
+    "ocpRouterIp": {
+      "type": "string",
+      "defaultValue": "1.2.3.4",
+      "metadata": {
+        "description": "The public IP address for OpenShift Router LB to create with ARecordName"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/dnszones",
+      "name": "[parameters('ocpSubdomain')]",
+      "apiVersion": "2016-04-01",
+      "location": "global",
+      "properties": { }
+    },
+    {
+      "type": "Microsoft.Network/dnszones/a",
+      "name": "[concat(parameters('ocpSubdomain'), '/', parameters('ocpRouterName'))]",
+      "apiVersion": "2016-04-01",
+      "dependsOn": [
+        "[parameters('ocpSubdomain')]"
+      ],
+      "properties": {
+        "TTL": 3600,
+        "ARecords": [
+          {
+            "ipv4Address": "[parameters('ocpRouterIp')]"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/dnszones/CNAME",
+      "name": "*",
+      "apiVersion": "2016-04-01",
+      "dependsOn": [
+        "[parameters('ocpSubdomain')]"
+      ],
+      "properties": {
+        "TTL": 3600,
+        "CNAMERecord": [
+          {
+            "cname": "[parameters('ocpRouterName')]"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Network/dnszones/NS",
+      "name": "@",
+      "apiVersion": "2016-04-01",
+      "dependsOn": [
+        "[parameters('ocpSubdomain')]"
+      ],
+      "properties": {
+        "TTL": 172800,
+        "NSRecords": [
+           {
+             "nsdname": "ns1-01.azure-dns.com."
+           },
+           {
+             "nsdname": "ns2-01.azure-dns.net."
+           },
+           {
+             "nsdname": "ns3-01.azure-dns.org."
+           },
+           {
+             "nsdname": "ns4-01.azure-dns.info."
+           }
+        ]
+     }
+    }
+  ],
+  "outputs": {
+    "nameServers": {
+      "type": "array",
+      "value": "[reference(parameters('ocpSubdomain')).nameServers]"
+    }
+  }
+}
