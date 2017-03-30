@@ -41,4 +41,4 @@
     until: azure.finished
     retries: 320
     with_items: "{{ azure_async.results }}"
-  - debug: msg="the test value of azure  {{ azure }}"
+  - debug: msg="the test2 value of azure  {{ azure }}"
