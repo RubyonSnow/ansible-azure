@@ -9,8 +9,8 @@
     azure_rm_deployment:
       deployment_mode: incremental
       state: present
-      ad_user: "{{ ad_username }}"
-      password: "{{ ad_password }}"
+      #ad_user: "{{ ad_username }}"
+      #password: "{{ ad_password }}"
       subscription_id: "{{ subscriptionID }}"
       resource_group_name: "{{ resource_group_name }}"
       location: "{{ region }}"
