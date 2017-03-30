@@ -9,14 +9,14 @@
     azure_rm_deployment:
       deployment_mode: incremental
       state: present
-      ad_user: "{{ ad_username }}"
-      password: "{{ ad_password }}"
+      #ad_user: "{{ ad_username }}"
+      #password: "{{ ad_password }}"
       subscription_id: "{{ subscriptionID }}"
       resource_group_name: "{{ resource_group_name }}"
       location: "{{ region }}"
       #### We add it to the master subnet but really don't matter
       deployment_name: cloudforms
-      parameters:
+      parameters:admi
         osDiskVhdUri:
           value: https://2f4tux6ag3tq5tftrb2cecwz.blob.core.windows.net/myimages/cfme-azure-5.7.0.17-1.x86_64fixed.vhd
         osType:
